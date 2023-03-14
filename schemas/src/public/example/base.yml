@@ -1,0 +1,30 @@
+components:
+  schemas:
+    Example:
+      description: Un example
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+        name:
+          description: nombre de ejemplo
+          type: string
+          example: Marcos :)
+        Age:
+          description: otra variable de ejemplo
+          type: number
+          example: 22
+        status:
+          $ref: "#/components/schemas/status"
+
+    CreateExample:
+      description: Creación de un example.
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/Example/properties/name"
+        Age:
+          $ref: "#/components/schemas/Example/properties/Age"
+      required:
+        - name
+

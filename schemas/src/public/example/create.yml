@@ -1,0 +1,24 @@
+paths:
+  /api/example/create:
+    post:
+      operationId: createExample
+      tags:
+        - Example
+      summary: Create an example
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      requestBody:
+        description: Create an example in database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExample"
+      responses:
+        "200":
+          $ref: "#/components/responses/successCreateExampleResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

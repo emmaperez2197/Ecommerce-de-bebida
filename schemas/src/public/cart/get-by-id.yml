@@ -1,0 +1,17 @@
+paths:
+  /api/cart/get-by-id:
+    get:
+      operationId: GetByIdCart
+      tags:
+        - Cart
+      summary: Find a cart by id
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      responses:
+        "200":
+          $ref: "#/components/responses/successGetByIdCartResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

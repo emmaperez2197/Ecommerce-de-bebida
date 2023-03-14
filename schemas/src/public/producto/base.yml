@@ -1,0 +1,225 @@
+components:
+  schemas:
+    Producto:
+      description: Un producto
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+        name:
+          description: Nombre del producto
+          type: string
+          example: Cerveza
+        description:
+          description: Descripcion del producto
+          type: string
+          example: Cerveza rubia
+        imageUrl:
+          description: Link de imagen del producto
+          type: string
+          example: "asd"
+        brandName:
+          description: Nombre de la marca del producto
+          type: string
+          example: "Stella Artois"
+        attributes:
+          description: Atributos del producto
+          type: object
+          properties:
+            style:
+              description: Estilo de cerveza
+              type: string
+              example: "Ipa"
+            ibu:
+              description: Nivel de amargor. Un número mayor significa mayor amargor
+              type: number
+              example: 7
+            abv:
+              description: Concentración alcohólica
+              type: number
+              example: 5
+        price:
+          description: Precio del producto
+          type: number
+          example: 300
+        inStock:
+          description: Disponibilidad en stock
+          type: boolean
+          example: true
+        isVisible:
+          description: Visibilidad del producto
+          type: boolean
+          example: true
+        launchDate:
+          description: Fecha de lanzamiento de producto
+          type: isoDate
+          example: 2022/04/01
+        status:
+          $ref: "#/components/schemas/status"
+    Update: 
+      description: Un producto
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+        name:
+          description: Nombre del producto
+          type: string
+          example: Cerveza
+        description:
+          description: Descripcion del producto
+          type: string
+          example: Cerveza negra
+        imageUrl:
+          description: Link de imagen del producto
+          type: string
+          example: "asd1"
+        brandName:
+          description: Nombre de la marca del producto
+          type: string
+          example: "Stella Artois Black"
+        attributes:
+          description: Atributos del producto
+          type: object
+          properties:
+            style:
+              description: Estilo de cerveza
+              type: string
+              example: "Bock"
+            ibu:
+              description: Nivel de amargor. Un número mayor significa mayor amargor
+              type: number
+              example: 8
+            abv:
+              description: Concentración alcohólica
+              type: number
+              example: 5
+        price:
+          description: Precio del producto
+          type: number
+          example: 350
+        inStock:
+          description: Disponibilidad en stock
+          type: boolean
+          example: true
+        isVisible:
+          description: Visibilidad del producto
+          type: boolean
+          example: true
+        launchDate:
+          description: Fecha de lanzamiento de producto
+          type: isoDate
+          example: 2022/04/08
+        status:
+          $ref: "#/components/schemas/status"
+    FiltersAndOrderBy:
+      description: Busqueda,listado y ordenado por filtros de un Producto.
+      type: object
+      properties:
+        brandName:
+          description: Nombre de la marca del producto
+          type: string
+          example: Andes
+        inStock:
+          description: Disponibilidad en stock del producto
+          type: boolean
+          example: true
+        isVisible:
+          description: Visibilidad del producto
+          type: boolean
+          example: true
+        orderBy:
+          description: "Ordenar el listado según los siguientes criterios:
+          -Más barato primero
+          -Más caro primero
+          -Más amargo primero
+          -Menos amargo primero"
+          type: string
+          example: moreExpensive
+
+    CreateProducto:
+      description: Creación de un Producto.
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/Producto/properties/name"
+        description:
+          $ref: "#/components/schemas/Producto/properties/description"
+        imageUrl:
+          $ref: "#/components/schemas/Producto/properties/imageUrl"
+        brandName:
+          $ref: "#/components/schemas/Producto/properties/brandName"
+        attributes:
+          $ref: "#/components/schemas/Producto/properties/attributes"
+        style: 
+          $ref: "#/components/schemas/Producto/properties/attributes/properties/style"
+        ibu:
+          $ref: "#/components/schemas/Producto/properties/attributes/properties/ibu"
+        abv:
+          $ref: "#/components/schemas/Producto/properties/attributes/properties/abv"
+        price:
+          $ref: "#/components/schemas/Producto/properties/price"
+        inStock:
+          $ref: "#/components/schemas/Producto/properties/inStock"
+        isVisible:
+          $ref: "#/components/schemas/Producto/properties/isVisible"
+        launchDate:
+          $ref: "#/components/schemas/Producto/properties/launchDate"
+      required:
+        - name
+        - imageUrl
+        - brandName
+        - style
+        - ibu
+        - abv
+        - price
+        - inStock
+
+    UpdateProducto:
+      description: Actualización de un Producto.
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/Update/properties/name"
+        description:
+          $ref: "#/components/schemas/Update/properties/description"
+        imageUrl:
+          $ref: "#/components/schemas/Update/properties/imageUrl"
+        brandName:
+          $ref: "#/components/schemas/Update/properties/brandName"
+        attributes:
+          $ref: "#/components/schemas/Update/properties/attributes"
+        style: 
+          $ref: "#/components/schemas/Update/properties/attributes/properties/style"
+        ibu:
+          $ref: "#/components/schemas/Update/properties/attributes/properties/ibu"
+        abv:
+          $ref: "#/components/schemas/Update/properties/attributes/properties/abv"
+        price:
+          $ref: "#/components/schemas/Update/properties/price"
+        inStock:
+          $ref: "#/components/schemas/Update/properties/inStock"
+        isVisible:
+          $ref: "#/components/schemas/Update/properties/isVisible"
+        launchDate:
+          $ref: "#/components/schemas/Update/properties/launchDate"
+
+    ListProducto:
+      description: Listado, filtrado y ordenado de productos.
+      type: object
+      properties:
+        brandName: 
+          $ref: "#/components/schemas/FiltersAndOrderBy/properties/brandName"
+        inStock:
+          $ref: "#/components/schemas/FiltersAndOrderBy/properties/inStock"
+        isVisible:
+          $ref: "#/components/schemas/FiltersAndOrderBy/properties/isVisible"
+        orderBy:
+          $ref: "#/components/schemas/FiltersAndOrderBy/properties/orderBy"
+
+    GetById:
+      description: Listado de producto por id
+      type: objects
+      properties:
+        id:
+          $ref: "#/components/schemas/id"

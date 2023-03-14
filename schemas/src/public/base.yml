@@ -1,0 +1,691 @@
+openapi: 3.0.0
+info:
+  title: Doc Challenge MoodTechnology
+  description: Manage User, docs, words
+  version: 1.6.0
+  x-logo:
+    url: "https://public.arpi.ar/coraje.png"
+    altText: Digesto Municipal
+
+tags:
+  - name: Example
+    description: For managing User
+  - name: Producto
+    description: Creación y datos de un producto
+  - name: Cart
+    description: Creación y datos de un carrito
+
+servers:
+  - url: "--*TODAVIA NO HAY SERVER DE PROD*--"
+    description: The Prod API server
+    variables:
+      environment:
+        default: prod
+
+  - url: "localhost:7020"
+    description: The Local API server
+    variables:
+      environment:
+        default: local
+
+paths: {}
+
+components:
+  schemas:
+    id:
+      description: The unique identifier of the item
+      type: string
+      readOnly: true
+      example: d555345345345as67a342a
+
+    password:
+      description: The password for the user
+      type: string
+      example: Uv13qwer67pLkj
+
+    status:
+      description: The item status
+      type: string
+      default: active
+      enum:
+        - active
+        - inactive
+      example: active
+
+    dateCreated:
+      description: The date of creation
+      type: string
+      format: date-time
+      readOnly: true
+      example: 2019-07-12T19:59:51.801Z
+
+    dateModified:
+      description: The date of the last modification
+      type: string
+      format: date-time
+      readOnly: true
+      example: 2019-07-20T19:59:51.801Z
+
+    dateCreatedDay:
+      description: The day of creation
+      type: string
+      format: date-time
+      readOnly: true
+      example: 2019-07-12T19:59:51.801Z
+
+    dateModifiedDay:
+      description: The day of last modification
+      type: string
+      format: date-time
+      readOnly: true
+      example: 2019-07-12T19:59:51.801Z
+
+    userCreated:
+      description: The ID of the user who created the item. This refer to the `id` of the **User** Entity of **Janis ID Service**. See [User](/v2/service/id#tag/User).
+      type: string
+      readOnly: true
+      example: 6a1fc1eeb5b68406e0487a10
+
+    userModified:
+      description: The ID of the user who last modified the item. This refer to the `id` of the **User** Entity of **Janis ID Service**. See [User](/v2/service/id#tag/User).
+      type: string
+      readOnly: true
+      example: 7e1fc1eeb5b68406e048796
+
+    accountsIds:
+      description: The Related Account's IDs. This refer to the `id` of the **Account** Entity. See [Account](/v2/service/commerce#tag/Account).
+      type: array
+      items:
+        type: string
+      example:
+        - 1a1fc1eeb5b68406e0487a01
+        - 1a1fc1eeb5b68406e0487a00
+
+    accountsReferenceIds:
+      description: The Related Account's Reference IDs. This refer to the `referenceId` of the **Account** Entity. See [Account](/v2/service/commerce#tag/Account).
+      type: array
+      items:
+        type: string
+      example:
+        - "account-acc-01"
+        - "account-acc-02"
+      
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: admin
+      description: The middleware admin
+
+  parameters:
+    id:
+      name: id
+      in: path
+      schema:
+        type: string
+        example: d555345345345as67a342a
+      required: true
+      description: The unique identifier of the item
+
+    skuId:
+      name: id
+      in: path
+      schema:
+        type: string
+        example: d555345345345as67a368c
+      required: true
+      description: |
+        The SKU ID. This refer to the `id` of the **Sku** Entity. See [Sku](/v2/service/catalog#tag/Sku).
+
+    ListSortDirection:
+      name: sortDirection
+      in: query
+      description: The direction to sort by
+      required: false
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+
+    ListPageNumber:
+      name: x-janis-page
+      in: header
+      description: The page to get
+      required: false
+      schema:
+        type: integer
+        default: 1
+        minimum: 0
+        exclusiveMinimum: true
+
+    ListPageSize:
+      name: x-janis-page-size
+      in: header
+      description: The page size to get
+      required: false
+      schema:
+        type: integer
+        default: 60
+        minimum: 0
+        exclusiveMinimum: true
+
+    JanisEntity:
+      name: janis-entity
+      in: header
+      description: The entity name
+      required: true
+      schema:
+        type: string
+
+  headers:
+    x-janis-total:
+      description: The total amount of records in the list
+      schema:
+        type: integer
+        minimum: 0
+
+  responses:
+    GenericSuccess:
+      description: Operation succeeded
+      content:
+        application/json:
+          schema:
+            type: object
+
+    SuccessResponse:
+      description: A general success response (200)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A message for success response
+                example: Success response
+
+    SuccessCreateResponse:
+      description: The item was created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/id"
+    
+    SuccessCreateCollaboratorResponse:
+      description: The collaborator user was created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/id"
+              password:
+                $ref: "#/components/schemas/password"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+
+    SuccessEditCollaboratorResponse:
+      description: The collaborator user was edited
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              userEdited:
+                $ref: "#/components/schemas/id"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+    
+    SuccessDeleteUserResponse:
+      description: The user was deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              userDeleted:
+                $ref: "#/components/schemas/id"
+              message: 
+                type: string
+                description: A message for success deleted
+                example: success
+              code: 
+                type: number
+                description: Internal code
+                example: 2
+    
+    SuccessCreateLegislationResponse:
+      description: The legislation was created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/id"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+    
+    SuccessGetAllLegislationsResponse:
+      description: all legislations
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: success
+              code:
+                type: number
+                example: 2
+              legislationGetted:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Legislation"
+    
+    SuccessGetAllAreasResponse:
+      description: all areas
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: success
+              code:
+                type: number
+                example: 2
+              areaGetted:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Area"
+
+    
+    SuccessDeleteLegislationResponse:
+      description: the legislation was deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              legislationDeleted:
+                $ref: "#/components/schemas/id"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+      
+    SuccessDeleteAreaResponse:
+      description: the area was deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              areaDeleted:
+                $ref: "#/components/schemas/id"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+
+    SuccessLoginResponse:
+      description: Succes Login!
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: mensaje exitoso
+                type: string
+                example: success
+              token:
+                description: token encriptado con los datos del logueo. Para desencriptar utilizar -> jwt.verify(response.token, process.env.KEY_PRELOGIN))
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGU1OTNlNGRlNDVjOTA1NGJmOWRhZCIsImVtYWlsIjoibWFyY29zQHZlcmEuY29tIiwibmFtZSI6Im1hcmNvcyIsImxhc3RuYW1lIjoidmVyYSIsInN0YXR1cyI6ImFjdGl2ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTExNTc4NX0.Fw0fBmleg2hY2QGYLxlxgXi5zs8YNiz1tc1VSCSDXRM
+              code:
+                description: codigo de estado
+                type: number
+                example: 2
+
+    successCreateExampleResponse:
+      description: Area Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              exampleInserted:
+                $ref: "#/components/schemas/id"
+
+    successCreateProductoResponse:
+      description: Product Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              productoInserted:
+                $ref: "#/components/schemas/id"
+
+    SuccessUpdateProductoResponse:
+      description: Product Updated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              productoUpdated:
+                $ref: "#/components/schemas/id"
+
+    successListProductoResponse:
+      description: List, filter and order product
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Producto"
+
+    successGetByIdProductoResponse:
+      description: Get a product by id
+      content:
+        application/json:
+          schema:
+              $ref: "#/components/schemas/Producto"
+
+    successCreateCartResponse:
+      description: Cart Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cartInserted:
+                $ref: "#/components/schemas/CreateCart"
+
+    SuccessAddItemResponse:
+      description: Add item on cart
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              itemInserted:
+                $ref: "#/components/schemas/AddItems"
+
+    successGetByIdCartResponse:
+      description: Get a cart by id
+      content:
+        application/json:
+          schema:
+              $ref: "#/components/schemas/Cart"
+
+    succesCreateKeywordResponse:
+      description: Keyword created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: mensaje exitoso
+                type: string
+                example: success
+              areaModified:
+                description: Id del area modificada en la base de datos
+                type: string
+                example: 6216841c66331fc958369a8b
+              code:
+                description: codigo de estado
+                type: number
+                example: 2
+              keywordCreated:
+                description: la palabra clave que se creo
+                type: string
+                example: vacunacion
+
+    SuccessChangeUserPasswordResponse:
+      description: Change the password of a user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user:
+                $ref: "#/components/schemas/id"
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+
+    SuccesGetUsersResponse:
+      description: Get users
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A message for success response
+                example: success
+              code:
+                type: number
+                description: Internal code
+                example: 2
+              usersGetted:
+                type: array
+                description: Array of users
+                items:
+                  $ref: "#/components/schemas/User"
+
+    notFoundUsersResponse:
+      description: No users found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A message for bad response
+                example: Users not found
+              code:
+                type: number
+                description: Internal code
+                example: 1
+
+    notFoundLegislationsResponse:
+      description: No legislations found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A message for bad response
+                example: legislations not found
+              code:
+                type: number
+                description: Internal code
+                example: 1
+
+    notFoundAreasResponse:
+      description: No areas found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: A message for bad response
+                example: Any areas found!
+              code:
+                type: number
+                description: Internal code
+                example: 1
+
+
+    SuccessUpdateResponse:
+      description: The item was updated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/id"
+
+    BadRequest:
+      description: A client error has ocurred.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A message explaining the error
+                type: string
+
+    Unauthorized:
+      description: Authentication missing or invalid
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A message explaining the error
+                type: string
+
+    Forbidden:
+      description: Not authorized request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A message explaining the error
+                type: string
+
+    InternalError:
+      description: A server error has ocurred.
+
+    NotFound:
+      description: An item is not Found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A message explaining the error
+                type: string
+
+    BatchResponse:
+      description: Batch responses
+      headers:
+        x-janis-total-created: 
+          description: The total amount of items created
+          schema:
+            type: integer
+            minimum: 0
+        x-janis-total-updated: 
+          description: The total amount of items updated
+          schema:
+            type: integer
+            minimum: 0
+        x-janis-total-not-modified: 
+          description: The total amount of items not modified
+          schema:
+            type: integer
+            minimum: 0
+        x-janis-total-error: 
+          description: The total amount of items with error
+          schema:
+            type: integer
+            minimum: 0
+      content:
+        application/json:
+          schema:
+            description: item Batch response
+            type: object
+            properties:
+              itemsCreated:
+                description: |
+                  Items which were created succesfully.  
+                  - The *key* of the *object* is the `referenceId` of the created item.
+                  - The *value* of the *object* is the `id` of the created item.
+                type: object
+                example:
+                  item-ref-id-1: 5ec694b11b252473bad6f170
+                  item-ref-id-2: 5ec694b11b252473bad6f171
+              itemsUpdated:
+                description: |
+                  Items which were updated succesfully.  
+                  - The *key* of the *object* is the `referenceId` of the updated item.
+                  - The *value* of the *object* is the `id` of the updated item.
+                type: object
+                example:
+                  item-ref-id-3: 606606782e232624c18f1c18
+                  item-ref-id-4: 6066067ff04765697cdd4d9a
+              itemsNotModified:
+                description: |
+                  Items that did not need to be modified.  
+                  This occurs when the item in the service **is equal** to the received item.
+                  - The *key* of the *object* is the `referenceId` of the non modified item.
+                  - The *value* of the *object* is the `id` of the non modified item.
+                type: object
+                example:
+                  item-ref-id-5: 606606827c96a136ead9065e
+                  item-ref-id-6: 60660686f42efcf71529e69d
+              itemsError:
+                description: |
+                  Items with some error.  
+                  - The *key* of the *object* is the `referenceId` of the item.
+                  - The *value* of the *object* is the validation message error.
+                type: object
+                example:
+                  item-ref-id-7: Invalid Accounts

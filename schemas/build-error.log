@@ -1,0 +1,220 @@
+{
+	"public": {
+		"errors": [
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "id"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "name"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "imageUrl"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "quantity"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "price"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "id"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "name"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "imageUrl"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "quantity"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "price"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "required",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/required",
+				"params": {
+					"missingProperty": "$ref"
+				},
+				"message": "should have required property '$ref'"
+			},
+			{
+				"keyword": "oneOf",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/oneOf",
+				"params": {
+					"passingSchemas": null
+				},
+				"message": "should match exactly one schema in oneOf"
+			},
+			{
+				"keyword": "type",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/properties/items/anyOf/1/type",
+				"params": {
+					"type": "array"
+				},
+				"message": "should be array"
+			},
+			{
+				"keyword": "anyOf",
+				"dataPath": ".components.schemas['Cart'].properties['items'].items",
+				"schemaPath": "#/properties/items/anyOf",
+				"params": {},
+				"message": "should match some schema in anyOf"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "description"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "type"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart'].properties['items']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "items"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "required",
+				"dataPath": ".components.schemas['Cart'].properties['items']",
+				"schemaPath": "#/required",
+				"params": {
+					"missingProperty": "$ref"
+				},
+				"message": "should have required property '$ref'"
+			},
+			{
+				"keyword": "oneOf",
+				"dataPath": ".components.schemas['Cart'].properties['items']",
+				"schemaPath": "#/oneOf",
+				"params": {
+					"passingSchemas": null
+				},
+				"message": "should match exactly one schema in oneOf"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "description"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "type"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "additionalProperties",
+				"dataPath": ".components.schemas['Cart']",
+				"schemaPath": "#/additionalProperties",
+				"params": {
+					"additionalProperty": "properties"
+				},
+				"message": "should NOT have additional properties"
+			},
+			{
+				"keyword": "required",
+				"dataPath": ".components.schemas['Cart']",
+				"schemaPath": "#/required",
+				"params": {
+					"missingProperty": "$ref"
+				},
+				"message": "should have required property '$ref'"
+			},
+			{
+				"keyword": "oneOf",
+				"dataPath": ".components.schemas['Cart']",
+				"schemaPath": "#/oneOf",
+				"params": {
+					"passingSchemas": null
+				},
+				"message": "should match exactly one schema in oneOf"
+			}
+		]
+	}
+}

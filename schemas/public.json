@@ -1,0 +1,1608 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Doc Challenge MoodTechnology",
+		"description": "Manage User, docs, words",
+		"version": "1.6.0",
+		"x-logo": {
+			"url": "https://public.arpi.ar/coraje.png",
+			"altText": "Digesto Municipal"
+		}
+	},
+	"tags": [
+		{
+			"name": "Example",
+			"description": "For managing User"
+		},
+		{
+			"name": "Producto",
+			"description": "Creación y datos de un producto"
+		},
+		{
+			"name": "Cart",
+			"description": "Creación y datos de un carrito"
+		}
+	],
+	"servers": [
+		{
+			"url": "--*TODAVIA NO HAY SERVER DE PROD*--",
+			"description": "The Prod API server",
+			"variables": {
+				"environment": {
+					"default": "prod"
+				}
+			}
+		},
+		{
+			"url": "localhost:7020",
+			"description": "The Local API server",
+			"variables": {
+				"environment": {
+					"default": "local"
+				}
+			}
+		}
+	],
+	"paths": {
+		"/api/cart/addItem": {
+			"post": {
+				"operationId": "addItem",
+				"tags": [
+					"Cart"
+				],
+				"summary": "Add items on cart",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "Add items on cart in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddItems"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/SuccessAddItemResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/cart/create": {
+			"post": {
+				"operationId": "CreateCart",
+				"tags": [
+					"Cart"
+				],
+				"summary": "Create a cart",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "Create a cart in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateCart"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successCreateCartResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/cart/get-by-id": {
+			"get": {
+				"operationId": "GetByIdCart",
+				"tags": [
+					"Cart"
+				],
+				"summary": "Find a cart by id",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successGetByIdCartResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/example/create": {
+			"post": {
+				"operationId": "createExample",
+				"tags": [
+					"Example"
+				],
+				"summary": "Create an example",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "Create an example in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateExample"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successCreateExampleResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/producto/create": {
+			"post": {
+				"operationId": "createProducto",
+				"tags": [
+					"Producto"
+				],
+				"summary": "Create an producto",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "Create an product in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateProducto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successCreateProductoResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/producto/getbyid": {
+			"get": {
+				"operationId": "getbyidProducto",
+				"tags": [
+					"Producto"
+				],
+				"summary": "Find a product by id",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successGetByIdProductoResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/producto/list": {
+			"get": {
+				"operationId": "listProducto",
+				"tags": [
+					"Producto"
+				],
+				"summary": "List a product",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "List, filter and order an product in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ListProducto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/successListProductoResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/producto/update": {
+			"put": {
+				"operationId": "updateProducto",
+				"tags": [
+					"Producto"
+				],
+				"summary": "Update a product",
+				"security": [
+					{
+						"ApiKey": [],
+						"ApiSecret": []
+					}
+				],
+				"requestBody": {
+					"description": "Update an product in database",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateProducto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/SuccessUpdateProductoResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"id": {
+				"description": "The unique identifier of the item",
+				"type": "string",
+				"readOnly": true,
+				"example": "d555345345345as67a342a"
+			},
+			"password": {
+				"description": "The password for the user",
+				"type": "string",
+				"example": "Uv13qwer67pLkj"
+			},
+			"status": {
+				"description": "The item status",
+				"type": "string",
+				"default": "active",
+				"enum": [
+					"active",
+					"inactive"
+				],
+				"example": "active"
+			},
+			"dateCreated": {
+				"description": "The date of creation",
+				"type": "string",
+				"format": "date-time",
+				"readOnly": true,
+				"example": "2019-07-12T19:59:51.801Z"
+			},
+			"dateModified": {
+				"description": "The date of the last modification",
+				"type": "string",
+				"format": "date-time",
+				"readOnly": true,
+				"example": "2019-07-20T19:59:51.801Z"
+			},
+			"dateCreatedDay": {
+				"description": "The day of creation",
+				"type": "string",
+				"format": "date-time",
+				"readOnly": true,
+				"example": "2019-07-12T19:59:51.801Z"
+			},
+			"dateModifiedDay": {
+				"description": "The day of last modification",
+				"type": "string",
+				"format": "date-time",
+				"readOnly": true,
+				"example": "2019-07-12T19:59:51.801Z"
+			},
+			"userCreated": {
+				"description": "The ID of the user who created the item. This refer to the `id` of the **User** Entity of **Janis ID Service**. See [User](/v2/service/id#tag/User).",
+				"type": "string",
+				"readOnly": true,
+				"example": "6a1fc1eeb5b68406e0487a10"
+			},
+			"userModified": {
+				"description": "The ID of the user who last modified the item. This refer to the `id` of the **User** Entity of **Janis ID Service**. See [User](/v2/service/id#tag/User).",
+				"type": "string",
+				"readOnly": true,
+				"example": "7e1fc1eeb5b68406e048796"
+			},
+			"accountsIds": {
+				"description": "The Related Account's IDs. This refer to the `id` of the **Account** Entity. See [Account](/v2/service/commerce#tag/Account).",
+				"type": "array",
+				"items": {
+					"type": "string"
+				},
+				"example": [
+					"1a1fc1eeb5b68406e0487a01",
+					"1a1fc1eeb5b68406e0487a00"
+				]
+			},
+			"accountsReferenceIds": {
+				"description": "The Related Account's Reference IDs. This refer to the `referenceId` of the **Account** Entity. See [Account](/v2/service/commerce#tag/Account).",
+				"type": "array",
+				"items": {
+					"type": "string"
+				},
+				"example": [
+					"account-acc-01",
+					"account-acc-02"
+				]
+			},
+			"Cart": {
+				"description": "Un carrito",
+				"type": "object",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"email": {
+						"description": "Email del carrito",
+						"type": "string",
+						"example": "emailtest@example.com"
+					},
+					"items": {
+						"description": "Items dentro del carrito",
+						"type": "object",
+						"properties": {
+							"id": {
+								"$ref": "#/components/schemas/id"
+							},
+							"name": {
+								"description": "Nombre del producto",
+								"type": "string",
+								"example": "Ipa amarga"
+							},
+							"imageUrl": {
+								"description": "Link de imagen del producto",
+								"type": "string",
+								"example": "linkDeEjemplo.com"
+							},
+							"quantity": {
+								"description": "Cantidad del producto en el carrito",
+								"type": "number",
+								"example": 5
+							},
+							"price": {
+								"description": "Precio del producto",
+								"type": "number",
+								"example": 330
+							}
+						}
+					}
+				}
+			},
+			"AddItem": {
+				"description": "Agregar Items al Carrito",
+				"type": "object",
+				"properties": {
+					"id": {
+						"description": "Id del producto",
+						"type": "string",
+						"example": "62600061d5e99f07cf7125ee"
+					},
+					"quantity": {
+						"description": "Cantidad del producto en el carrito",
+						"type": "number",
+						"example": 5
+					}
+				}
+			},
+			"CreateCart": {
+				"description": "Creación de un Carrito",
+				"type": "object",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"email": {
+						"$ref": "#/components/schemas/Cart/properties/email"
+					}
+				},
+				"required": [
+					"email"
+				]
+			},
+			"AddItems": {
+				"description": "Agregar Items al Carrito",
+				"type": "object",
+				"properties": {
+					"id": {
+						"description": "Id del producto",
+						"type": "string",
+						"example": "62600061d5e99f07cf7125ee"
+					},
+					"quantity": {
+						"$ref": "#/components/schemas/AddItem/properties/quantity"
+					}
+				},
+				"required": [
+					"id",
+					"quantity"
+				]
+			},
+			"GetById": {
+				"description": "Listado de producto por id",
+				"type": "objects",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					}
+				}
+			},
+			"Example": {
+				"description": "Un example",
+				"type": "object",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"name": {
+						"description": "nombre de ejemplo",
+						"type": "string",
+						"example": "Marcos :)"
+					},
+					"Age": {
+						"description": "otra variable de ejemplo",
+						"type": "number",
+						"example": 22
+					},
+					"status": {
+						"$ref": "#/components/schemas/status"
+					}
+				}
+			},
+			"CreateExample": {
+				"description": "Creación de un example.",
+				"type": "object",
+				"properties": {
+					"name": {
+						"$ref": "#/components/schemas/Example/properties/name"
+					},
+					"Age": {
+						"$ref": "#/components/schemas/Example/properties/Age"
+					}
+				},
+				"required": [
+					"name"
+				]
+			},
+			"Producto": {
+				"description": "Un producto",
+				"type": "object",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"name": {
+						"description": "Nombre del producto",
+						"type": "string",
+						"example": "Cerveza"
+					},
+					"description": {
+						"description": "Descripcion del producto",
+						"type": "string",
+						"example": "Cerveza rubia"
+					},
+					"imageUrl": {
+						"description": "Link de imagen del producto",
+						"type": "string",
+						"example": "asd"
+					},
+					"brandName": {
+						"description": "Nombre de la marca del producto",
+						"type": "string",
+						"example": "Stella Artois"
+					},
+					"attributes": {
+						"description": "Atributos del producto",
+						"type": "object",
+						"properties": {
+							"style": {
+								"description": "Estilo de cerveza",
+								"type": "string",
+								"example": "Ipa"
+							},
+							"ibu": {
+								"description": "Nivel de amargor. Un número mayor significa mayor amargor",
+								"type": "number",
+								"example": 7
+							},
+							"abv": {
+								"description": "Concentración alcohólica",
+								"type": "number",
+								"example": 5
+							}
+						}
+					},
+					"price": {
+						"description": "Precio del producto",
+						"type": "number",
+						"example": 300
+					},
+					"inStock": {
+						"description": "Disponibilidad en stock",
+						"type": "boolean",
+						"example": true
+					},
+					"isVisible": {
+						"description": "Visibilidad del producto",
+						"type": "boolean",
+						"example": true
+					},
+					"launchDate": {
+						"description": "Fecha de lanzamiento de producto",
+						"type": "isoDate",
+						"example": "2022/04/01"
+					},
+					"status": {
+						"$ref": "#/components/schemas/status"
+					}
+				}
+			},
+			"Update": {
+				"description": "Un producto",
+				"type": "object",
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"name": {
+						"description": "Nombre del producto",
+						"type": "string",
+						"example": "Cerveza"
+					},
+					"description": {
+						"description": "Descripcion del producto",
+						"type": "string",
+						"example": "Cerveza negra"
+					},
+					"imageUrl": {
+						"description": "Link de imagen del producto",
+						"type": "string",
+						"example": "asd1"
+					},
+					"brandName": {
+						"description": "Nombre de la marca del producto",
+						"type": "string",
+						"example": "Stella Artois Black"
+					},
+					"attributes": {
+						"description": "Atributos del producto",
+						"type": "object",
+						"properties": {
+							"style": {
+								"description": "Estilo de cerveza",
+								"type": "string",
+								"example": "Bock"
+							},
+							"ibu": {
+								"description": "Nivel de amargor. Un número mayor significa mayor amargor",
+								"type": "number",
+								"example": 8
+							},
+							"abv": {
+								"description": "Concentración alcohólica",
+								"type": "number",
+								"example": 5
+							}
+						}
+					},
+					"price": {
+						"description": "Precio del producto",
+						"type": "number",
+						"example": 350
+					},
+					"inStock": {
+						"description": "Disponibilidad en stock",
+						"type": "boolean",
+						"example": true
+					},
+					"isVisible": {
+						"description": "Visibilidad del producto",
+						"type": "boolean",
+						"example": true
+					},
+					"launchDate": {
+						"description": "Fecha de lanzamiento de producto",
+						"type": "isoDate",
+						"example": "2022/04/08"
+					},
+					"status": {
+						"$ref": "#/components/schemas/status"
+					}
+				}
+			},
+			"FiltersAndOrderBy": {
+				"description": "Busqueda,listado y ordenado por filtros de un Producto.",
+				"type": "object",
+				"properties": {
+					"brandName": {
+						"description": "Nombre de la marca del producto",
+						"type": "string",
+						"example": "Andes"
+					},
+					"inStock": {
+						"description": "Disponibilidad en stock del producto",
+						"type": "boolean",
+						"example": true
+					},
+					"isVisible": {
+						"description": "Visibilidad del producto",
+						"type": "boolean",
+						"example": true
+					},
+					"orderBy": {
+						"description": "Ordenar el listado según los siguientes criterios: -Más barato primero -Más caro primero -Más amargo primero -Menos amargo primero",
+						"type": "string",
+						"example": "moreExpensive"
+					}
+				}
+			},
+			"CreateProducto": {
+				"description": "Creación de un Producto.",
+				"type": "object",
+				"properties": {
+					"name": {
+						"$ref": "#/components/schemas/Producto/properties/name"
+					},
+					"description": {
+						"$ref": "#/components/schemas/Producto/properties/description"
+					},
+					"imageUrl": {
+						"$ref": "#/components/schemas/Producto/properties/imageUrl"
+					},
+					"brandName": {
+						"$ref": "#/components/schemas/Producto/properties/brandName"
+					},
+					"attributes": {
+						"$ref": "#/components/schemas/Producto/properties/attributes"
+					},
+					"style": {
+						"$ref": "#/components/schemas/Producto/properties/attributes/properties/style"
+					},
+					"ibu": {
+						"$ref": "#/components/schemas/Producto/properties/attributes/properties/ibu"
+					},
+					"abv": {
+						"$ref": "#/components/schemas/Producto/properties/attributes/properties/abv"
+					},
+					"price": {
+						"$ref": "#/components/schemas/Producto/properties/price"
+					},
+					"inStock": {
+						"$ref": "#/components/schemas/Producto/properties/inStock"
+					},
+					"isVisible": {
+						"$ref": "#/components/schemas/Producto/properties/isVisible"
+					},
+					"launchDate": {
+						"$ref": "#/components/schemas/Producto/properties/launchDate"
+					}
+				},
+				"required": [
+					"name",
+					"imageUrl",
+					"brandName",
+					"style",
+					"ibu",
+					"abv",
+					"price",
+					"inStock"
+				]
+			},
+			"UpdateProducto": {
+				"description": "Actualización de un Producto.",
+				"type": "object",
+				"properties": {
+					"name": {
+						"$ref": "#/components/schemas/Update/properties/name"
+					},
+					"description": {
+						"$ref": "#/components/schemas/Update/properties/description"
+					},
+					"imageUrl": {
+						"$ref": "#/components/schemas/Update/properties/imageUrl"
+					},
+					"brandName": {
+						"$ref": "#/components/schemas/Update/properties/brandName"
+					},
+					"attributes": {
+						"$ref": "#/components/schemas/Update/properties/attributes"
+					},
+					"style": {
+						"$ref": "#/components/schemas/Update/properties/attributes/properties/style"
+					},
+					"ibu": {
+						"$ref": "#/components/schemas/Update/properties/attributes/properties/ibu"
+					},
+					"abv": {
+						"$ref": "#/components/schemas/Update/properties/attributes/properties/abv"
+					},
+					"price": {
+						"$ref": "#/components/schemas/Update/properties/price"
+					},
+					"inStock": {
+						"$ref": "#/components/schemas/Update/properties/inStock"
+					},
+					"isVisible": {
+						"$ref": "#/components/schemas/Update/properties/isVisible"
+					},
+					"launchDate": {
+						"$ref": "#/components/schemas/Update/properties/launchDate"
+					}
+				}
+			},
+			"ListProducto": {
+				"description": "Listado, filtrado y ordenado de productos.",
+				"type": "object",
+				"properties": {
+					"brandName": {
+						"$ref": "#/components/schemas/FiltersAndOrderBy/properties/brandName"
+					},
+					"inStock": {
+						"$ref": "#/components/schemas/FiltersAndOrderBy/properties/inStock"
+					},
+					"isVisible": {
+						"$ref": "#/components/schemas/FiltersAndOrderBy/properties/isVisible"
+					},
+					"orderBy": {
+						"$ref": "#/components/schemas/FiltersAndOrderBy/properties/orderBy"
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"ApiKey": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "admin",
+				"description": "The middleware admin"
+			}
+		},
+		"parameters": {
+			"id": {
+				"name": "id",
+				"in": "path",
+				"schema": {
+					"type": "string",
+					"example": "d555345345345as67a342a"
+				},
+				"required": true,
+				"description": "The unique identifier of the item"
+			},
+			"skuId": {
+				"name": "id",
+				"in": "path",
+				"schema": {
+					"type": "string",
+					"example": "d555345345345as67a368c"
+				},
+				"required": true,
+				"description": "The SKU ID. This refer to the `id` of the **Sku** Entity. See [Sku](/v2/service/catalog#tag/Sku).\n"
+			},
+			"ListSortDirection": {
+				"name": "sortDirection",
+				"in": "query",
+				"description": "The direction to sort by",
+				"required": false,
+				"schema": {
+					"type": "string",
+					"enum": [
+						"asc",
+						"desc"
+					]
+				}
+			},
+			"ListPageNumber": {
+				"name": "x-janis-page",
+				"in": "header",
+				"description": "The page to get",
+				"required": false,
+				"schema": {
+					"type": "integer",
+					"default": 1,
+					"minimum": 0,
+					"exclusiveMinimum": true
+				}
+			},
+			"ListPageSize": {
+				"name": "x-janis-page-size",
+				"in": "header",
+				"description": "The page size to get",
+				"required": false,
+				"schema": {
+					"type": "integer",
+					"default": 60,
+					"minimum": 0,
+					"exclusiveMinimum": true
+				}
+			},
+			"JanisEntity": {
+				"name": "janis-entity",
+				"in": "header",
+				"description": "The entity name",
+				"required": true,
+				"schema": {
+					"type": "string"
+				}
+			}
+		},
+		"headers": {
+			"x-janis-total": {
+				"description": "The total amount of records in the list",
+				"schema": {
+					"type": "integer",
+					"minimum": 0
+				}
+			}
+		},
+		"responses": {
+			"GenericSuccess": {
+				"description": "Operation succeeded",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			},
+			"SuccessResponse": {
+				"description": "A general success response (200)",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "Success response"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessCreateResponse": {
+				"description": "The item was created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"$ref": "#/components/schemas/id"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessCreateCollaboratorResponse": {
+				"description": "The collaborator user was created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"$ref": "#/components/schemas/id"
+								},
+								"password": {
+									"$ref": "#/components/schemas/password"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessEditCollaboratorResponse": {
+				"description": "The collaborator user was edited",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"userEdited": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessDeleteUserResponse": {
+				"description": "The user was deleted",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"userDeleted": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success deleted",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessCreateLegislationResponse": {
+				"description": "The legislation was created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessGetAllLegislationsResponse": {
+				"description": "all legislations",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"example": 2
+								},
+								"legislationGetted": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Legislation"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessGetAllAreasResponse": {
+				"description": "all areas",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"example": 2
+								},
+								"areaGetted": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Area"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessDeleteLegislationResponse": {
+				"description": "the legislation was deleted",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"legislationDeleted": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessDeleteAreaResponse": {
+				"description": "the area was deleted",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"areaDeleted": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessLoginResponse": {
+				"description": "Succes Login!",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "mensaje exitoso",
+									"type": "string",
+									"example": "success"
+								},
+								"token": {
+									"description": "token encriptado con los datos del logueo. Para desencriptar utilizar -> jwt.verify(response.token, process.env.KEY_PRELOGIN))",
+									"type": "string",
+									"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGU1OTNlNGRlNDVjOTA1NGJmOWRhZCIsImVtYWlsIjoibWFyY29zQHZlcmEuY29tIiwibmFtZSI6Im1hcmNvcyIsImxhc3RuYW1lIjoidmVyYSIsInN0YXR1cyI6ImFjdGl2ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTExNTc4NX0.Fw0fBmleg2hY2QGYLxlxgXi5zs8YNiz1tc1VSCSDXRM"
+								},
+								"code": {
+									"description": "codigo de estado",
+									"type": "number",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"successCreateExampleResponse": {
+				"description": "Area Created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"exampleInserted": {
+									"$ref": "#/components/schemas/id"
+								}
+							}
+						}
+					}
+				}
+			},
+			"successCreateProductoResponse": {
+				"description": "Product Created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"productoInserted": {
+									"$ref": "#/components/schemas/id"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessUpdateProductoResponse": {
+				"description": "Product Updated",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"productoUpdated": {
+									"$ref": "#/components/schemas/id"
+								}
+							}
+						}
+					}
+				}
+			},
+			"successListProductoResponse": {
+				"description": "List, filter and order product",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/components/schemas/Producto"
+							}
+						}
+					}
+				}
+			},
+			"successGetByIdProductoResponse": {
+				"description": "Get a product by id",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/Producto"
+						}
+					}
+				}
+			},
+			"successCreateCartResponse": {
+				"description": "Cart Created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"cartInserted": {
+									"$ref": "#/components/schemas/CreateCart"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessAddItemResponse": {
+				"description": "Add item on cart",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"itemInserted": {
+									"$ref": "#/components/schemas/AddItems"
+								}
+							}
+						}
+					}
+				}
+			},
+			"successGetByIdCartResponse": {
+				"description": "Get a cart by id",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/Cart"
+						}
+					}
+				}
+			},
+			"succesCreateKeywordResponse": {
+				"description": "Keyword created",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "mensaje exitoso",
+									"type": "string",
+									"example": "success"
+								},
+								"areaModified": {
+									"description": "Id del area modificada en la base de datos",
+									"type": "string",
+									"example": "6216841c66331fc958369a8b"
+								},
+								"code": {
+									"description": "codigo de estado",
+									"type": "number",
+									"example": 2
+								},
+								"keywordCreated": {
+									"description": "la palabra clave que se creo",
+									"type": "string",
+									"example": "vacunacion"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessChangeUserPasswordResponse": {
+				"description": "Change the password of a user",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"user": {
+									"$ref": "#/components/schemas/id"
+								},
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccesGetUsersResponse": {
+				"description": "Get users",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"description": "A message for success response",
+									"example": "success"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 2
+								},
+								"usersGetted": {
+									"type": "array",
+									"description": "Array of users",
+									"items": {
+										"$ref": "#/components/schemas/User"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"notFoundUsersResponse": {
+				"description": "No users found",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"description": "A message for bad response",
+									"example": "Users not found"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 1
+								}
+							}
+						}
+					}
+				}
+			},
+			"notFoundLegislationsResponse": {
+				"description": "No legislations found",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"description": "A message for bad response",
+									"example": "legislations not found"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 1
+								}
+							}
+						}
+					}
+				}
+			},
+			"notFoundAreasResponse": {
+				"description": "No areas found",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"type": "string",
+									"description": "A message for bad response",
+									"example": "Any areas found!"
+								},
+								"code": {
+									"type": "number",
+									"description": "Internal code",
+									"example": 1
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessUpdateResponse": {
+				"description": "The item was updated",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"$ref": "#/components/schemas/id"
+								}
+							}
+						}
+					}
+				}
+			},
+			"BadRequest": {
+				"description": "A client error has ocurred.",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "A message explaining the error",
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"Unauthorized": {
+				"description": "Authentication missing or invalid",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "A message explaining the error",
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"Forbidden": {
+				"description": "Not authorized request",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "A message explaining the error",
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"InternalError": {
+				"description": "A server error has ocurred."
+			},
+			"NotFound": {
+				"description": "An item is not Found.",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"message": {
+									"description": "A message explaining the error",
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"BatchResponse": {
+				"description": "Batch responses",
+				"headers": {
+					"x-janis-total-created": {
+						"description": "The total amount of items created",
+						"schema": {
+							"type": "integer",
+							"minimum": 0
+						}
+					},
+					"x-janis-total-updated": {
+						"description": "The total amount of items updated",
+						"schema": {
+							"type": "integer",
+							"minimum": 0
+						}
+					},
+					"x-janis-total-not-modified": {
+						"description": "The total amount of items not modified",
+						"schema": {
+							"type": "integer",
+							"minimum": 0
+						}
+					},
+					"x-janis-total-error": {
+						"description": "The total amount of items with error",
+						"schema": {
+							"type": "integer",
+							"minimum": 0
+						}
+					}
+				},
+				"content": {
+					"application/json": {
+						"schema": {
+							"description": "item Batch response",
+							"type": "object",
+							"properties": {
+								"itemsCreated": {
+									"description": "Items which were created succesfully.  \n- The *key* of the *object* is the `referenceId` of the created item.\n- The *value* of the *object* is the `id` of the created item.\n",
+									"type": "object",
+									"example": {
+										"item-ref-id-1": "5ec694b11b252473bad6f170",
+										"item-ref-id-2": "5ec694b11b252473bad6f171"
+									}
+								},
+								"itemsUpdated": {
+									"description": "Items which were updated succesfully.  \n- The *key* of the *object* is the `referenceId` of the updated item.\n- The *value* of the *object* is the `id` of the updated item.\n",
+									"type": "object",
+									"example": {
+										"item-ref-id-3": "606606782e232624c18f1c18",
+										"item-ref-id-4": "6066067ff04765697cdd4d9a"
+									}
+								},
+								"itemsNotModified": {
+									"description": "Items that did not need to be modified.  \nThis occurs when the item in the service **is equal** to the received item.\n- The *key* of the *object* is the `referenceId` of the non modified item.\n- The *value* of the *object* is the `id` of the non modified item.\n",
+									"type": "object",
+									"example": {
+										"item-ref-id-5": "606606827c96a136ead9065e",
+										"item-ref-id-6": "60660686f42efcf71529e69d"
+									}
+								},
+								"itemsError": {
+									"description": "Items with some error.  \n- The *key* of the *object* is the `referenceId` of the item.\n- The *value* of the *object* is the validation message error.\n",
+									"type": "object",
+									"example": {
+										"item-ref-id-7": "Invalid Accounts"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

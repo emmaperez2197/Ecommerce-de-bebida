@@ -1,0 +1,24 @@
+paths:
+  /api/cart/create:
+    post:
+      operationId: CreateCart
+      tags:
+        - Cart
+      summary: Create a cart
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      requestBody:
+        description: Create a cart in database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCart"
+      responses:
+        "200":
+          $ref: "#/components/responses/successCreateCartResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

@@ -1,0 +1,24 @@
+paths:
+  /api/cart/addItem:
+    post:
+      operationId: addItem
+      tags:
+        - Cart
+      summary: Add items on cart
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      requestBody:
+        description: Add items on cart in database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddItems"
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessAddItemResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

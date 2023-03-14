@@ -1,0 +1,79 @@
+components:
+  schemas:
+    Cart:
+      description: Un carrito
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+        email:
+          description: Email del carrito
+          type: string
+          example: emailtest@example.com
+        items:
+          description: Items dentro del carrito
+          type: object
+          properties:
+            id:
+              $ref: "#/components/schemas/id"
+            name:
+              description: Nombre del producto
+              type: string
+              example: Ipa amarga
+            imageUrl:
+              description: Link de imagen del producto
+              type: string
+              example: linkDeEjemplo.com
+            quantity:
+              description: Cantidad del producto en el carrito
+              type: number
+              example: 5
+            price:
+              description: Precio del producto
+              type: number
+              example: 330
+    AddItem: 
+      description: Agregar Items al Carrito
+      type: object
+      properties:
+        id:
+            description: Id del producto
+            type: string
+            example: 62600061d5e99f07cf7125ee
+        quantity:
+            description: Cantidad del producto en el carrito
+            type: number
+            example: 5
+
+    CreateCart:
+      description: Creación de un Carrito
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+        email:
+          $ref: "#/components/schemas/Cart/properties/email"
+      required:
+        - email
+
+    AddItems:
+      description: Agregar Items al Carrito
+      type: object
+      properties:
+        id:
+          description: Id del producto
+          type: string
+          example: 62600061d5e99f07cf7125ee
+        quantity:
+          $ref: "#/components/schemas/AddItem/properties/quantity"
+      required:
+        - id
+        - quantity
+
+    GetById:
+      description: Listado de producto por id
+      type: objects
+      properties:
+        id:
+          $ref: "#/components/schemas/id"
+          

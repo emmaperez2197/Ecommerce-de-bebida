@@ -1,0 +1,17 @@
+paths:
+  /api/producto/getbyid:
+    get:
+      operationId: getbyidProducto
+      tags:
+        - Producto
+      summary: Find a product by id
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      responses:
+        "200":
+          $ref: "#/components/responses/successGetByIdProductoResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

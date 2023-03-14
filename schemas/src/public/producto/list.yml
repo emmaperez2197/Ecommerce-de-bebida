@@ -1,0 +1,24 @@
+paths:
+  /api/producto/list:
+    get:
+      operationId: listProducto
+      tags:
+        - Producto
+      summary: List a product
+      security:
+        - ApiKey: []
+          ApiSecret: []
+      requestBody:
+        description: List, filter and order an product in database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ListProducto"
+      responses:
+        "200":
+          $ref: "#/components/responses/successListProductoResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

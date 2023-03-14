@@ -1,0 +1,51 @@
+{
+  "name": "challengemoodtechnology",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">MoodTechnology eCommerce Challenge</h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit -R nyan --recursive tests/",
+    "demon": "nodemon server.js",
+    "test-watch": "npm test -- -w",
+    "coverage": "nyc npm test",
+    "api-schema-builder": "npx @janiscommerce/api-schema-builder",
+    "test-schema": "npx redoc-cli serve schemas/public.json",
+    "generate-html": "npx redoc-cli bundle schemas/public.json schemas/; mv redoc-static.html src/public/",
+    "lint": "eslint ./src ./tests",
+    "doc": "npm run api-schema-builder; npm run test-schema"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcosvera2297/challengeMoodTechnology.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcosvera2297/challengeMoodTechnology/issues"
+  },
+  "homepage": "https://github.com/marcosvera2297/challengeMoodTechnology#readme",
+  "dependencies": {
+    "are-objects-equals": "^1.0.1",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
+    "mongodb": "^4.4.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.2",
+    "objects-normalizer": "^1.0.4"
+  },
+  "devDependencies": {
+    "@janiscommerce/api-schema-builder": "^1.1.1",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "http": "^0.0.1-security",
+    "mocha": "^9.2.0",
+    "nodemon": "^2.0.15",
+    "nyc": "^15.1.0",
+    "sinon": "^13.0.1"
+  }
+}
